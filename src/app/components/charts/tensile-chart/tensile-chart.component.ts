@@ -23,10 +23,15 @@ export class TensileChartComponent implements OnInit {
   public graphData$!: Observable<PlotlyTrace[]>;
   public graphLayout = {
     title: { text: 'Tensile Strength Distribution' },
-    xaxis: { title: { text: 'Tensile Strength (MPa)' } },
-    yaxis: { title: { text: 'Frequency' } },
+    xaxis: { title: { text: 'Tensile Strength (MPa)' }, gridcolor: '#444' },
+    yaxis: { title: { text: 'Frequency' }, gridcolor: '#444' },
     barmode: 'overlay',
     showlegend: true,
+    paper_bgcolor: '#2c2c2e',
+    plot_bgcolor: '#2c2c2e',
+    font: {
+      color: '#f5f5f7',
+    },
   };
 
   ngOnInit(): void {

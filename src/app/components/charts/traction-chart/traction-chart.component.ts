@@ -23,9 +23,14 @@ export class TractionChartComponent implements OnInit {
   public graphData$!: Observable<PlotlyTrace[]>;
   public graphLayout: any = {
     title: { text: 'Traction Curve - Stress vs. Strain' },
-    xaxis: { title: { text: 'Strain' } },
-    yaxis: { title: { text: 'Stress (MPa)' } },
+    xaxis: { title: { text: 'Strain' }, gridcolor: '#444' },
+    yaxis: { title: { text: 'Stress (MPa)' }, gridcolor: '#444' },
     showlegend: true,
+    paper_bgcolor: '#2c2c2e',
+    plot_bgcolor: '#2c2c2e',
+    font: {
+      color: '#f5f5f7',
+    },
   };
 
   ngOnInit(): void {

@@ -27,9 +27,20 @@ export class RadarChartComponent implements OnInit {
       radialaxis: {
         visible: true,
         range: [0, 1000], // Will be adjusted dynamically if needed
+        gridcolor: '#444',
+        linecolor: '#555',
+      },
+      angularaxis: {
+        gridcolor: '#444',
+        linecolor: '#555',
       },
     },
     showlegend: true,
+    paper_bgcolor: '#2c2c2e',
+    plot_bgcolor: '#2c2c2e',
+    font: {
+      color: '#f5f5f7',
+    },
   };
 
   ngOnInit(): void {

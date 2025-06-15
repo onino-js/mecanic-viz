@@ -29,6 +29,11 @@ export class HeatmapChartComponent implements OnInit {
     title: { text: "Young's Modulus vs. Temperature" },
     xaxis: { title: { text: 'Temperature (°C)' } },
     yaxis: { title: { text: 'Material' } },
+    paper_bgcolor: '#2c2c2e',
+    plot_bgcolor: '#2c2c2e',
+    font: {
+      color: '#f5f5f7',
+    },
   };
 
   ngOnInit(): void {

@@ -27,9 +27,14 @@ export class HardnessChartComponent implements OnInit {
   public graphData$!: Observable<PlotlyTrace[]>;
   public graphLayout: any = {
     title: { text: 'Hardness vs. Tensile Strength' },
-    xaxis: { title: { text: 'Hardness (HV)' } },
-    yaxis: { title: { text: 'Tensile Strength (MPa)' } },
+    xaxis: { title: { text: 'Hardness (HV)' }, gridcolor: '#444' },
+    yaxis: { title: { text: 'Tensile Strength (MPa)' }, gridcolor: '#444' },
     showlegend: true,
+    paper_bgcolor: '#2c2c2e',
+    plot_bgcolor: '#2c2c2e',
+    font: {
+      color: '#f5f5f7',
+    },
   };
 
   ngOnInit(): void {

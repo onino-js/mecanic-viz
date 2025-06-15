@@ -23,10 +23,16 @@ export class BoxplotChartComponent implements OnInit {
   public graphData$!: Observable<PlotlyTrace[]>;
   public graphLayout: any = {
     title: { text: 'Distribution of Mechanical Properties' },
-    yaxis: { title: { text: 'Value' } },
+    yaxis: { title: { text: 'Value' }, gridcolor: '#444' },
+    xaxis: { gridcolor: '#444' },
     boxmode: 'group',
     showlegend: true,
     legendwidth: 300,
+    paper_bgcolor: '#2c2c2e',
+    plot_bgcolor: '#2c2c2e',
+    font: {
+      color: '#f5f5f7',
+    },
   };
 
   ngOnInit(): void {
