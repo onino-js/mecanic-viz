@@ -4,10 +4,8 @@ import { AppComponent } from './app/app.component';
 import { isDevMode } from '@angular/core';
 
 async function prepareApp() {
-  if (isDevMode()) {
-    const { worker } = await import('./msw/browser');
-    return worker.start();
-  }
+  const { worker } = await import('./msw/browser');
+  return worker.start();
   return Promise.resolve();
 }
 
