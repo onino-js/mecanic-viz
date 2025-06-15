@@ -1,0 +1,132 @@
+{
+  "materials": {
+    "steel": {
+      "name": "Steel",
+      "properties": {
+        "yieldStrength": {
+          "min": 200,
+          "q1": 230,
+          "median": 250,
+          "q3": 280,
+          "max": 350,
+          "outliers": [180, 190, 360, 370],
+          "unit": "MPa"
+        },
+        "tensileStrength": {
+          "min": 350,
+          "q1": 380,
+          "median": 400,
+          "q3": 420,
+          "max": 450,
+          "outliers": [330, 340, 460, 470],
+          "unit": "MPa"
+        },
+        "elongation": {
+          "min": 15,
+          "q1": 17,
+          "median": 20,
+          "q3": 23,
+          "max": 25,
+          "outliers": [12, 13, 26, 27],
+          "unit": "%"
+        }
+      }
+    },
+    "aluminum": {
+      "name": "Aluminum",
+      "properties": {
+        "yieldStrength": {
+          "min": 100,
+          "q1": 120,
+          "median": 150,
+          "q3": 180,
+          "max": 200,
+          "outliers": [80, 90, 210, 220],
+          "unit": "MPa"
+        },
+        "tensileStrength": {
+          "min": 200,
+          "q1": 220,
+          "median": 250,
+          "q3": 280,
+          "max": 300,
+          "outliers": [180, 190, 310, 320],
+          "unit": "MPa"
+        },
+        "elongation": {
+          "min": 10,
+          "q1": 12,
+          "median": 15,
+          "q3": 18,
+          "max": 20,
+          "outliers": [8, 9, 21, 22],
+          "unit": "%"
+        }
+      }
+    },
+    "titanium": {
+      "name": "Titanium",
+      "properties": {
+        "yieldStrength": {
+          "min": 700,
+          "q1": 750,
+          "median": 800,
+          "q3": 850,
+          "max": 900,
+          "outliers": [650, 680, 920, 950],
+          "unit": "MPa"
+        },
+        "tensileStrength": {
+          "min": 800,
+          "q1": 850,
+          "median": 900,
+          "q3": 950,
+          "max": 1000,
+          "outliers": [750, 780, 1020, 1050],
+          "unit": "MPa"
+        },
+        "elongation": {
+          "min": 8,
+          "q1": 9,
+          "median": 10,
+          "q3": 11,
+          "max": 12,
+          "outliers": [6, 7, 13, 14],
+          "unit": "%"
+        }
+      }
+    },
+    "composite": {
+      "name": "Composite",
+      "properties": {
+        "yieldStrength": {
+          "min": 250,
+          "q1": 270,
+          "median": 300,
+          "q3": 330,
+          "max": 350,
+          "outliers": [230, 240, 360, 370],
+          "unit": "MPa"
+        },
+        "tensileStrength": {
+          "min": 400,
+          "q1": 430,
+          "median": 500,
+          "q3": 550,
+          "max": 600,
+          "outliers": [380, 390, 610, 620],
+          "unit": "MPa"
+        },
+        "elongation": {
+          "min": 1.5,
+          "q1": 1.7,
+          "median": 2.0,
+          "q3": 2.3,
+          "max": 2.5,
+          "outliers": [1.2, 1.3, 2.6, 2.7],
+          "unit": "%"
+        }
+      }
+    }
+  }
+} 

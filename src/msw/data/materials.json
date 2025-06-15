@@ -1,0 +1,6 @@
+[
+  { "id": "steel", "name": "Steel" },
+  { "id": "aluminum", "name": "Aluminum" },
+  { "id": "titanium", "name": "Titanium" },
+  { "id": "composite", "name": "Composite" }
+] 

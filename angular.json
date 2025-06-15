@@ -29,17 +29,13 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/mockServiceWorker.js"
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -93,7 +89,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/mockServiceWorker.js"
             ],
             "styles": [
               "src/styles.scss"
@@ -103,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "5304b7a8-5176-4152-a691-d959c5bb39bf"
   }
 }

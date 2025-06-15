@@ -1,0 +1,13 @@
+<div class="material-selector" *ngIf="materials$ | async as materials">
+  <label for="material-select">Matériau:</label>
+  <select
+    name="materials"
+    id="material-select"
+    [(ngModel)]="selectedMaterial"
+    (change)="onMaterialChange($event)"
+  >
+    <option *ngFor="let material of materials" [value]="material.id">
+      {{ material.name }}
+    </option>
+  </select>
+</div>

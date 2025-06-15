@@ -1,0 +1,8 @@
+[
+  { "name": "Traction", "id": "traction" },
+  { "name": "Radar", "id": "radar" },
+  { "name": "Boxplot", "id": "boxplot" },
+  { "name": "Hardness", "id": "hardness" },
+  { "name": "Tensile", "id": "tensile" },
+  { "name": "Young's Modulus Heatmap", "id": "young-heatmap" }
+]

@@ -1,0 +1,8 @@
+<div [ngSwitch]="chartType$ | async">
+  <app-traction-chart *ngSwitchCase="'traction'"></app-traction-chart>
+  <app-radar-chart *ngSwitchCase="'radar'"></app-radar-chart>
+  <app-boxplot-chart *ngSwitchCase="'boxplot'"></app-boxplot-chart>
+  <app-hardness-chart *ngSwitchCase="'hardness'"></app-hardness-chart>
+  <app-tensile-chart *ngSwitchCase="'tensile'"></app-tensile-chart>
+  <app-heatmap-chart *ngSwitchCase="'young-heatmap'"></app-heatmap-chart>
+</div>

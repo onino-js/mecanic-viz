@@ -1,0 +1,13 @@
+<div class="chart-selector" *ngIf="charts$ | async as charts">
+  <label for="chart-select">Chart:</label>
+  <select
+    name="charts"
+    id="chart-select"
+    [(ngModel)]="selectedChart"
+    (change)="onChartChange($event)"
+  >
+    <option *ngFor="let chart of charts" [value]="chart.id">
+      {{ chart.name }}
+    </option>
+  </select>
+</div>

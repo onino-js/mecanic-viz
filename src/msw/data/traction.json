@@ -1,0 +1,86 @@
+{
+    "materials": {
+      "steel": {
+        "name": "Steel",
+        "properties": {
+          "youngModulus": 210000,
+          "yieldStrength": 250,
+          "ultimateStrength": 400,
+          "elongation": 20
+        },
+        "tractionCurve": [
+          {"strain": 0, "stress": 0},
+          {"strain": 0.001, "stress": 210},
+          {"strain": 0.002, "stress": 250},
+          {"strain": 0.005, "stress": 300},
+          {"strain": 0.01, "stress": 350},
+          {"strain": 0.02, "stress": 380},
+          {"strain": 0.05, "stress": 400},
+          {"strain": 0.1, "stress": 380},
+          {"strain": 0.15, "stress": 350},
+          {"strain": 0.2, "stress": 300}
+        ]
+      },
+      "aluminum": {
+        "name": "Aluminum",
+        "properties": {
+          "youngModulus": 70000,
+          "yieldStrength": 150,
+          "ultimateStrength": 250,
+          "elongation": 15
+        },
+        "tractionCurve": [
+          {"strain": 0, "stress": 0},
+          {"strain": 0.001, "stress": 70},
+          {"strain": 0.002, "stress": 150},
+          {"strain": 0.005, "stress": 180},
+          {"strain": 0.01, "stress": 220},
+          {"strain": 0.02, "stress": 240},
+          {"strain": 0.05, "stress": 250},
+          {"strain": 0.08, "stress": 240},
+          {"strain": 0.1, "stress": 220},
+          {"strain": 0.15, "stress": 200}
+        ]
+      },
+      "titanium": {
+        "name": "Titanium",
+        "properties": {
+          "youngModulus": 110000,
+          "yieldStrength": 800,
+          "ultimateStrength": 900,
+          "elongation": 10
+        },
+        "tractionCurve": [
+          {"strain": 0, "stress": 0},
+          {"strain": 0.001, "stress": 110},
+          {"strain": 0.002, "stress": 220},
+          {"strain": 0.005, "stress": 550},
+          {"strain": 0.01, "stress": 800},
+          {"strain": 0.015, "stress": 850},
+          {"strain": 0.02, "stress": 880},
+          {"strain": 0.03, "stress": 900},
+          {"strain": 0.05, "stress": 850},
+          {"strain": 0.1, "stress": 800}
+        ]
+      },
+      "composite": {
+        "name": "Composite",
+        "properties": {
+          "youngModulus": 45000,
+          "yieldStrength": 300,
+          "ultimateStrength": 500,
+          "elongation": 2
+        },
+        "tractionCurve": [
+          {"strain": 0, "stress": 0},
+          {"strain": 0.001, "stress": 45},
+          {"strain": 0.002, "stress": 90},
+          {"strain": 0.005, "stress": 225},
+          {"strain": 0.01, "stress": 300},
+          {"strain": 0.015, "stress": 400},
+          {"strain": 0.02, "stress": 500},
+          {"strain": 0.021, "stress": 0}
+        ]
+      }
+    }
+  }

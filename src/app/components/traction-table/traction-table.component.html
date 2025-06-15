@@ -1,0 +1,37 @@
+<div *ngIf="materials$ | async as materials">
+  <div *ngFor="let material of materials" class="material-container">
+    <h2>{{ material.name }}</h2>
+
+    <h3>Properties</h3>
+    <table class="properties-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prop of material.properties | keyvalue">
+          <td>{{ prop.key }}</td>
+          <td>{{ prop.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Traction Curve</h3>
+    <table class="curve-table">
+      <thead>
+        <tr>
+          <th>Strain</th>
+          <th>Stress (MPa)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let point of material.tractionCurve">
+          <td>{{ point.strain }}</td>
+          <td>{{ point.stress }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

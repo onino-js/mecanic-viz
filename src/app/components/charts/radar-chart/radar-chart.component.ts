@@ -1,0 +1,77 @@
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { PlotlyModule } from 'angular-plotly.js';
+import { Observable, map, switchMap } from 'rxjs';
+import * as PlotlyJS from 'plotly.js-dist-min';
+import { PlotlyTrace, RadarResponse } from '../../../core/interfaces';
+
+PlotlyModule.plotlyjs = PlotlyJS;
+
+@Component({
+  selector: 'app-radar-chart',
+  standalone: true,
+  imports: [CommonModule, PlotlyModule],
+  templateUrl: './radar-chart.component.html',
+  styleUrls: ['./radar-chart.component.scss'],
+})
+export class RadarChartComponent implements OnInit {
+  private http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
+
+  public graphData$!: Observable<PlotlyTrace[]>;
+  public graphLayout: any = {
+    title: { text: 'Material Mechanical Profile' },
+    polar: {
+      radialaxis: {
+        visible: true,
+        range: [0, 1000], // Will be adjusted dynamically if needed
+      },
+    },
+    showlegend: true,
+  };
+
+  ngOnInit(): void {
+    this.graphData$ = this.route.queryParams.pipe(
+      switchMap((params) =>
+        this.http
+          .get<RadarResponse>('/api/radar')
+          .pipe(
+            map((response) => this.transformData(response, params['material']))
+          )
+      )
+    );
+  }
+
+  private transformData(
+    response: RadarResponse,
+    selectedMaterial: string | undefined
+  ): PlotlyTrace[] {
+    const traces: PlotlyTrace[] = [];
+    const { labels, datasets } = response;
+
+    let datasetsToProcess: any = {};
+    if (selectedMaterial) {
+      if (datasets[selectedMaterial]) {
+        datasetsToProcess = { [selectedMaterial]: datasets[selectedMaterial] };
+      }
+    } else {
+      datasetsToProcess = datasets;
+    }
+
+    for (const key in datasetsToProcess) {
+      if (Object.prototype.hasOwnProperty.call(datasetsToProcess, key)) {
+        const materialData = datasetsToProcess[key];
+        traces.push({
+          type: 'scatterpolar',
+          r: materialData.values,
+          theta: labels,
+          fill: 'toself',
+          name: materialData.name,
+        });
+      }
+    }
+    return traces;
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "labels": [
+    "Young's Modulus (GPa)",
+    "Tensile Strength (MPa)",
+    "Toughness (MPa·m^0.5)",
+    "Hardness (Vickers)",
+    "Density (g/cm³)"
+  ],
+  "datasets": {
+    "steel": {
+      "name": "Steel",
+      "values": [200, 800, 50, 250, 7.85]
+    },
+    "aluminium": {
+      "name": "Aluminium",
+      "values": [70, 500, 25, 150, 2.7]
+    },
+    "titanium": {
+      "name": "Titanium",
+      "values": [114, 950, 60, 350, 4.43]
+    },
+    "composite": {
+      "name": "Composite",
+      "values": [45, 600, 70, 120, 1.6]
+    }
+  }
+} 

@@ -1,0 +1,14 @@
+<div class="chart-header">
+  <h2>Traction Curve</h2>
+  <p>
+    This chart shows the relationship between stress (force per unit area) and
+    strain (change in length) when a material is stretched.
+  </p>
+</div>
+<div *ngIf="graphData$ | async as data" class="chart-container">
+  <plotly-plot
+    [data]="data"
+    [layout]="graphLayout"
+    [style]="{ 'width.px': '1200', 'height.px': '800' }"
+  ></plotly-plot>
+</div>

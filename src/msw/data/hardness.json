@@ -1,0 +1,104 @@
+{
+  "materials": {
+    "steel": {
+      "name": "Steel",
+      "correlation": [
+        {"hardness": 150, "tensileStrength": 500},
+        {"hardness": 200, "tensileStrength": 650},
+        {"hardness": 250, "tensileStrength": 800},
+        {"hardness": 300, "tensileStrength": 950},
+        {"hardness": 350, "tensileStrength": 1100},
+        {"hardness": 400, "tensileStrength": 1250},
+        {"hardness": 450, "tensileStrength": 1400},
+        {"hardness": 500, "tensileStrength": 1550}
+      ],
+      "properties": {
+        "hardnessRange": {
+          "min": 150,
+          "max": 500,
+          "unit": "HV"
+        },
+        "tensileRange": {
+          "min": 500,
+          "max": 1550,
+          "unit": "MPa"
+        }
+      }
+    },
+    "aluminum": {
+      "name": "Aluminum",
+      "correlation": [
+        {"hardness": 30, "tensileStrength": 100},
+        {"hardness": 40, "tensileStrength": 150},
+        {"hardness": 50, "tensileStrength": 200},
+        {"hardness": 60, "tensileStrength": 250},
+        {"hardness": 70, "tensileStrength": 300},
+        {"hardness": 80, "tensileStrength": 350},
+        {"hardness": 90, "tensileStrength": 400},
+        {"hardness": 100, "tensileStrength": 450}
+      ],
+      "properties": {
+        "hardnessRange": {
+          "min": 30,
+          "max": 100,
+          "unit": "HV"
+        },
+        "tensileRange": {
+          "min": 100,
+          "max": 450,
+          "unit": "MPa"
+        }
+      }
+    },
+    "titanium": {
+      "name": "Titanium",
+      "correlation": [
+        {"hardness": 200, "tensileStrength": 800},
+        {"hardness": 250, "tensileStrength": 900},
+        {"hardness": 300, "tensileStrength": 1000},
+        {"hardness": 350, "tensileStrength": 1100},
+        {"hardness": 400, "tensileStrength": 1200},
+        {"hardness": 450, "tensileStrength": 1300},
+        {"hardness": 500, "tensileStrength": 1400},
+        {"hardness": 550, "tensileStrength": 1500}
+      ],
+      "properties": {
+        "hardnessRange": {
+          "min": 200,
+          "max": 550,
+          "unit": "HV"
+        },
+        "tensileRange": {
+          "min": 800,
+          "max": 1500,
+          "unit": "MPa"
+        }
+      }
+    },
+    "composite": {
+      "name": "Composite",
+      "correlation": [
+        {"hardness": 100, "tensileStrength": 300},
+        {"hardness": 150, "tensileStrength": 400},
+        {"hardness": 200, "tensileStrength": 500},
+        {"hardness": 250, "tensileStrength": 600},
+        {"hardness": 300, "tensileStrength": 700},
+        {"hardness": 350, "tensileStrength": 800},
+        {"hardness": 400, "tensileStrength": 900},
+        {"hardness": 450, "tensileStrength": 1000}
+      ],
+      "properties": {
+        "hardnessRange": {
+          "min": 100,
+          "max": 450,
+          "unit": "HV"
+        },
+        "tensileRange": {
+          "min": 300,
+          "max": 1000,
+          "unit": "MPa"
+        }
+      }
+    }
+  }
+} 

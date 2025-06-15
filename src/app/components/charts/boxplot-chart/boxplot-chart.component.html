@@ -1,0 +1,15 @@
+<div class="chart-header">
+  <h2>Box Plot</h2>
+  <p>
+    This diagram illustrates the statistical distribution (median, quartiles,
+    range) of material properties, allowing for visualization of variability and
+    comparison of dispersions.
+  </p>
+</div>
+<div *ngIf="graphData$ | async as data" class="chart-container">
+  <plotly-plot
+    [data]="data"
+    [layout]="graphLayout"
+    [style]="{ 'width.px': '1200', 'height.px': '800' }"
+  ></plotly-plot>
+</div>

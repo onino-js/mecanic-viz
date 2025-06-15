@@ -1,0 +1,14 @@
+<div class="chart-header">
+  <h2>Properties Radar Chart</h2>
+  <p>
+    This chart compares multiple properties (like hardness, strength, and
+    ductility) for different materials on a polar diagram.
+  </p>
+</div>
+<div *ngIf="graphData$ | async as data" class="chart-container">
+  <plotly-plot
+    [data]="data"
+    [layout]="graphLayout"
+    [style]="{ 'width.px': '1200', 'height.px': '800' }"
+  ></plotly-plot>
+</div>

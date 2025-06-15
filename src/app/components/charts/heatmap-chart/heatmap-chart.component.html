@@ -1,0 +1,14 @@
+<div class="chart-header">
+  <h2>Young's Modulus vs. Temperature</h2>
+  <p>
+    This heatmap shows the evolution of Young's Modulus (in MPa) at different
+    temperatures (°C) for various materials.
+  </p>
+</div>
+<div *ngIf="graphData$ | async as data" class="chart-container">
+  <plotly-plot
+    [data]="data"
+    [layout]="graphLayout"
+    [style]="{ 'width.px': '1200', 'height.px': '800' }"
+  ></plotly-plot>
+</div>

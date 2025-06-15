@@ -1,11 +1,24 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { MaterialSelectorComponent } from './components/material-selector/material-selector.component';
+import { ChartSelectorComponent } from './components/chart-selector/chart-selector.component';
+import { WelcomeModalComponent } from './components/welcome-modal/welcome-modal.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    // RouterLink,
+    // RouterLinkActive,
+    MaterialSelectorComponent,
+    ChartSelectorComponent,
+    WelcomeModalComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'mecanics';
