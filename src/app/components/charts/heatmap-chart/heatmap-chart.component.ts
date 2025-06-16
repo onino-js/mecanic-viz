@@ -50,21 +50,19 @@ export class HeatmapChartComponent implements OnInit {
 
   private transformData(
     response: HeatmapResponse,
-    selectedMaterial: string | undefined
+    selectedMaterialsStr: string | undefined
   ): PlotlyTrace[] {
-    let data: HeatmapData;
+    const allMaterialsData = response;
 
-    if (selectedMaterial && response[selectedMaterial]) {
-      data = response[selectedMaterial];
-    } else {
-      // Combine all materials for a comparative heatmap
-      const allMaterials = Object.keys(response);
-      data = {
-        x: response[allMaterials[0]].x,
-        y: allMaterials.map((m) => response[m].y[0]),
-        z: allMaterials.map((m) => response[m].z[0]),
-      };
-    }
+    const selectedIds = selectedMaterialsStr
+      ? selectedMaterialsStr.split(',')
+      : Object.keys(allMaterialsData);
+
+    const data: HeatmapData = {
+      x: allMaterialsData[selectedIds[0]]?.x || [],
+      y: selectedIds.map((id) => allMaterialsData[id]?.y[0]).filter((y) => y),
+      z: selectedIds.map((id) => allMaterialsData[id]?.z[0]).filter((z) => z),
+    };
 
     const trace: PlotlyTrace = {
       x: data.x,

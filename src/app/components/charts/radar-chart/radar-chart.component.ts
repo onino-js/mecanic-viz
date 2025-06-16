@@ -57,23 +57,18 @@ export class RadarChartComponent implements OnInit {
 
   private transformData(
     response: RadarResponse,
-    selectedMaterial: string | undefined
+    selectedMaterialsStr: string | undefined
   ): PlotlyTrace[] {
     const traces: PlotlyTrace[] = [];
     const { labels, datasets } = response;
 
-    let datasetsToProcess: any = {};
-    if (selectedMaterial) {
-      if (datasets[selectedMaterial]) {
-        datasetsToProcess = { [selectedMaterial]: datasets[selectedMaterial] };
-      }
-    } else {
-      datasetsToProcess = datasets;
-    }
+    const selectedIds = selectedMaterialsStr
+      ? selectedMaterialsStr.split(',')
+      : Object.keys(datasets);
 
-    for (const key in datasetsToProcess) {
-      if (Object.prototype.hasOwnProperty.call(datasetsToProcess, key)) {
-        const materialData = datasetsToProcess[key];
+    selectedIds.forEach((id) => {
+      if (datasets[id]) {
+        const materialData = datasets[id];
         traces.push({
           type: 'scatterpolar',
           r: materialData.values,
@@ -82,7 +77,8 @@ export class RadarChartComponent implements OnInit {
           name: materialData.name,
         });
       }
-    }
+    });
+
     return traces;
   }
 }

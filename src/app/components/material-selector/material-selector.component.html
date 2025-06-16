@@ -1,13 +1,17 @@
-<div class="material-selector" *ngIf="materials$ | async as materials">
-  <label for="material-select">Matériau:</label>
-  <select
-    name="materials"
-    id="material-select"
-    [(ngModel)]="selectedMaterial"
-    (change)="onMaterialChange($event)"
+<div class="material-button-group">
+  <button
+    (click)="toggleAll()"
+    [class.active]="areAllSelected()"
+    class="material-button"
   >
-    <option *ngFor="let material of materials" [value]="material.id">
-      {{ material.name }}
-    </option>
-  </select>
+    All Materials
+  </button>
+  <button
+    *ngFor="let material of materials$ | async"
+    (click)="toggleMaterial(material.id)"
+    [class.active]="isSelected(material.id)"
+    class="material-button"
+  >
+    {{ material.name }}
+  </button>
 </div>

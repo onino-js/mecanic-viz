@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Observable, map, tap } from 'rxjs';
 
 interface Material {
@@ -13,9 +12,9 @@ interface Material {
 @Component({
   selector: 'app-material-selector',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './material-selector.component.html',
-  styleUrl: './material-selector.component.scss',
+  styleUrls: ['./material-selector.component.scss'],
 })
 export class MaterialSelectorComponent implements OnInit {
   private http = inject(HttpClient);
@@ -23,37 +22,61 @@ export class MaterialSelectorComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
   materials$!: Observable<Material[]>;
-  selectedMaterial: string = 'all';
+  private allMaterialIds: string[] = [];
+  public selectedMaterials = new Set<string>();
 
   ngOnInit(): void {
-    this.materials$ = this.http
-      .get<Material[]>('/api/materials')
-      .pipe(map((materials) => [{ id: 'all', name: 'All' }, ...materials]));
-
-    // Ce code gère la synchronisation du matériau sélectionné avec les paramètres de l'URL
-    this.route.queryParams
-      .pipe(
-        // tap() permet d'effectuer des actions secondaires sans modifier les données
-        tap((params) => {
-          // Si un paramètre 'material' existe dans l'URL
-          if (params['material']) {
-            // On met à jour le matériau sélectionné dans le composant
-            this.selectedMaterial = params['material'];
+    this.materials$ = this.http.get<Material[]>('/api/materials').pipe(
+      tap((materials) => {
+        this.allMaterialIds = materials.map((m) => m.id);
+        // Initialize from URL or default to all selected
+        this.route.queryParams.subscribe((params) => {
+          const materialsFromUrl = params['material'];
+          if (materialsFromUrl) {
+            this.selectedMaterials = new Set(materialsFromUrl.split(','));
           } else {
-            // Sinon, on réinitialise avec la valeur par défaut
-            this.selectedMaterial = 'all';
+            // Default: select all
+            this.selectedMaterials = new Set(this.allMaterialIds);
+            this.updateUrl();
           }
-        })
-      )
-      // On souscrit pour activer l'Observable et déclencher le traitement
-      .subscribe();
+        });
+      })
+    );
   }
 
-  onMaterialChange(event: Event): void {
-    const material = (event.target as HTMLSelectElement).value;
+  toggleMaterial(id: string): void {
+    if (this.selectedMaterials.has(id)) {
+      this.selectedMaterials.delete(id);
+    } else {
+      this.selectedMaterials.add(id);
+    }
+    this.updateUrl();
+  }
+
+  toggleAll(): void {
+    if (this.areAllSelected()) {
+      this.selectedMaterials.clear();
+    } else {
+      this.selectedMaterials = new Set(this.allMaterialIds);
+    }
+    this.updateUrl();
+  }
+
+  isSelected(id: string): boolean {
+    return this.selectedMaterials.has(id);
+  }
+
+  areAllSelected(): boolean {
+    return this.selectedMaterials.size === this.allMaterialIds.length;
+  }
+
+  private updateUrl(): void {
+    const materials = Array.from(this.selectedMaterials);
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { material: material === 'all' ? null : material },
+      queryParams: {
+        material: materials.length > 0 ? materials.join(',') : null,
+      },
       queryParamsHandling: 'merge',
     });
   }

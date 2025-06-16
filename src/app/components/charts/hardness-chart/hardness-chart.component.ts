@@ -51,29 +51,18 @@ export class HardnessChartComponent implements OnInit {
 
   private transformData(
     response: HardnessResponse,
-    selectedMaterial: string | undefined
+    selectedMaterialsStr: string | undefined
   ): PlotlyTrace[] {
     const traces: PlotlyTrace[] = [];
-    const materials = response.materials;
+    const allMaterials = response.materials;
 
-    let materialsToProcess: any = {};
-    if (selectedMaterial) {
-      if (materials[selectedMaterial]) {
-        materialsToProcess = {
-          [selectedMaterial]: materials[selectedMaterial],
-        };
-      } else {
-        return [];
-      }
-    } else {
-      materialsToProcess = materials;
-    }
+    const selectedIds = selectedMaterialsStr
+      ? selectedMaterialsStr.split(',')
+      : Object.keys(allMaterials);
 
-    for (const materialKey in materialsToProcess) {
-      if (
-        Object.prototype.hasOwnProperty.call(materialsToProcess, materialKey)
-      ) {
-        const materialData = materialsToProcess[materialKey];
+    selectedIds.forEach((id) => {
+      if (allMaterials[id]) {
+        const materialData = allMaterials[id];
         traces.push({
           x: materialData.correlation.map(
             (p: HardnessCorrelationPoint) => p.hardness
@@ -86,7 +75,8 @@ export class HardnessChartComponent implements OnInit {
           name: materialData.name,
         });
       }
-    }
+    });
+
     return traces;
   }
 }

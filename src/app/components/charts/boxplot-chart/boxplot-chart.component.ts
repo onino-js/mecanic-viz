@@ -49,46 +49,42 @@ export class BoxplotChartComponent implements OnInit {
 
   private transformData(
     response: BoxplotResponse,
-    selectedMaterial: string | undefined
+    selectedMaterialsStr: string | undefined
   ): PlotlyTrace[] {
-    const materials = response.materials;
+    const allMaterials = response.materials;
     const processedProperties: { [key: string]: PlotlyTrace } = {};
 
-    let materialsToProcess: any = {};
-    if (selectedMaterial) {
-      if (materials[selectedMaterial]) {
-        materialsToProcess = {
-          [selectedMaterial]: materials[selectedMaterial],
-        };
-      }
-    } else {
-      materialsToProcess = materials;
-    }
+    const selectedIds = selectedMaterialsStr
+      ? selectedMaterialsStr.split(',')
+      : Object.keys(allMaterials);
 
-    for (const materialKey in materialsToProcess) {
-      const materialData = materialsToProcess[materialKey];
-      for (const propKey in materialData.properties) {
-        if (!processedProperties[propKey]) {
-          processedProperties[propKey] = {
-            type: 'box',
-            name: propKey,
-            x: [],
-            q1: [],
-            median: [],
-            q3: [],
-            lowerfence: [],
-            upperfence: [],
-          };
+    selectedIds.forEach((materialKey) => {
+      if (allMaterials[materialKey]) {
+        const materialData = allMaterials[materialKey];
+        for (const propKey in materialData.properties) {
+          if (!processedProperties[propKey]) {
+            processedProperties[propKey] = {
+              type: 'box',
+              name: propKey,
+              x: [],
+              q1: [],
+              median: [],
+              q3: [],
+              lowerfence: [],
+              upperfence: [],
+            };
+          }
+          const propData = materialData.properties[propKey];
+          processedProperties[propKey].x!.push(materialData.name);
+          processedProperties[propKey].q1!.push(propData.q1);
+          processedProperties[propKey].median!.push(propData.median);
+          processedProperties[propKey].q3!.push(propData.q3);
+          processedProperties[propKey].lowerfence!.push(propData.min);
+          processedProperties[propKey].upperfence!.push(propData.max);
         }
-        const propData = materialData.properties[propKey];
-        processedProperties[propKey].x!.push(materialData.name);
-        processedProperties[propKey].q1!.push(propData.q1);
-        processedProperties[propKey].median!.push(propData.median);
-        processedProperties[propKey].q3!.push(propData.q3);
-        processedProperties[propKey].lowerfence!.push(propData.min);
-        processedProperties[propKey].upperfence!.push(propData.max);
       }
-    }
+    });
+
     return Object.values(processedProperties);
   }
 }

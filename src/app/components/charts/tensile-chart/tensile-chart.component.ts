@@ -48,36 +48,27 @@ export class TensileChartComponent implements OnInit {
 
   private transformData(
     response: TensileResponse,
-    selectedMaterial: string | undefined
+    selectedMaterialsStr: string | undefined
   ): PlotlyTrace[] {
     const traces: PlotlyTrace[] = [];
-    let materialsToProcess: TensileResponse = {};
+    const allMaterials = response;
 
-    if (selectedMaterial) {
-      if (response[selectedMaterial]) {
-        materialsToProcess = {
-          [selectedMaterial]: response[selectedMaterial],
-        };
-      } else {
-        return []; // Retourne un tableau vide si le matériau sélectionné n'existe pas
-      }
-    } else {
-      materialsToProcess = response;
-    }
+    const selectedIds = selectedMaterialsStr
+      ? selectedMaterialsStr.split(',')
+      : Object.keys(allMaterials);
 
-    for (const materialKey in materialsToProcess) {
-      if (
-        Object.prototype.hasOwnProperty.call(materialsToProcess, materialKey)
-      ) {
-        const materialData = materialsToProcess[materialKey];
+    selectedIds.forEach((id) => {
+      if (allMaterials[id]) {
+        const materialData = allMaterials[id];
         traces.push({
           x: materialData.values,
           type: 'histogram',
-          name: materialKey.charAt(0).toUpperCase() + materialKey.slice(1),
+          name: id.charAt(0).toUpperCase() + id.slice(1),
           opacity: 0.75,
         });
       }
-    }
+    });
+
     return traces;
   }
 }
