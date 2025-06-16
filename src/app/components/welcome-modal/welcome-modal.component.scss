@@ -52,4 +52,19 @@
       transform: translateY(-2px);
     }
   }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 90vw; /* Utilise 90% de la largeur de la vue */
+    padding: 24px;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
 } 

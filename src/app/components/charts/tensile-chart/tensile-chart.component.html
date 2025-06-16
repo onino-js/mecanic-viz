@@ -6,9 +6,5 @@
   </p>
 </div>
 <div *ngIf="graphData$ | async as data" class="chart-container">
-  <plotly-plot
-    [data]="data"
-    [layout]="graphLayout"
-    [style]="{ 'width.px': '1200', 'height.px': '600' }"
-  ></plotly-plot>
+  <plotly-plot [data]="data" [layout]="graphLayout"></plotly-plot>
 </div>

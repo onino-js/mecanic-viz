@@ -83,3 +83,27 @@ a {
     }
   }
 }
+
+/* Responsive Styles */
+@media (max-width: 860px) {
+  nav {
+    height: auto; // Allow height to grow
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .nav-links, .nav-selectors {
+    gap: 12px;
+    flex-wrap: wrap; // Allow items to wrap
+    justify-content: center;
+  }
+  
+  .nav-selectors {
+    flex-direction: column;
+  }
+
+  main {
+    padding-top: 240px; // Estimate a safe height for the expanded nav
+  }
+}
